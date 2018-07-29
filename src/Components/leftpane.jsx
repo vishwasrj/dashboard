@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Stage, Layer, Transformer } from 'react-konva';
 import Konva from 'konva';
-import DraggedImage from './reusable/image.jsx';
-import TransformerComponent from './Transformer.jsx';
+import DraggedImage from './ReUsable/CanvasImage.jsx';
 
 
 module.exports =  class Left extends React.Component{

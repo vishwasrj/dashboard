@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import reactDOM from 'react-dom';
-import Left from './Components/leftpane.jsx';
-import Right from './Components/rightpane.jsx';
-import Header from './Components/header.jsx'
-import Footer from './Components/footer.jsx'
+import Left from './Components/LeftPane.jsx';
+import Right from './Components/RightPane.jsx';
+import Header from './Components/Header.jsx'
+import Footer from './Components/Footer.jsx'
 
 class App extends Component{
 

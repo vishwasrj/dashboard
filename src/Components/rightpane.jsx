@@ -1,5 +1,5 @@
 import React from 'react';
-import StaticImage from './reusable/staticimage.jsx';
+import StaticImage from './ReUsable/StaticImage.jsx';
 
 module.exports = class Right extends React.Component{
 
