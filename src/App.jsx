@@ -12,7 +12,7 @@ class App extends Component{
       <div>
         <Header />
           <div className="main">
-            <Left /><Right />
+          <Left /><Right />
           </div>
         <Footer />
       </div>

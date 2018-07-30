@@ -16,22 +16,21 @@ module.exports = class CanvasImage extends React.Component {
 
   onSrcRecieved = (obj) => {
     const image = new window.Image();
-    image.src = obj.src;
+    image.src = obj.data.src;
     image.width = 150;
     image.height = 120;
     image.onload = () => {
       this.setState({
             image: image,
-            x: obj.pointx-100 < 0 ? 0 : obj.pointx-100,
-            y: obj.pointy-100 < 0 ? 0 : obj.pointy-100,
-            name: obj.name.split('/').pop()
+            x: obj.data.x-100 < 0 ? 0 : obj.data.x-100,
+            y: obj.data.y-100 < 0 ? 0 : obj.data.y-100,
+            name: obj.name
       });
     };
   }
 
 
   handleDragEnd = e => {
-    console.log(e.target.x());
     this.setState({
       x: e.target.x(),
       y: e.target.y()
@@ -48,6 +47,6 @@ module.exports = class CanvasImage extends React.Component {
 
 
   render() {
-    return <Image ondblclick={this.props.delete} onDragEnd={this.handleDragEnd} name={this.state.name} image={this.state.image} x={this.state.x} y={this.state.y} draggable />;
+    return <Image ondblclick={this.props.delete} datakey={this.props.datakey} onDragEnd={this.handleDragEnd} name={this.state.name} image={this.state.image} x={this.state.x} y={this.state.y} draggable />;
   }
 }

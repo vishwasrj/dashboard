@@ -7,12 +7,34 @@ module.exports = class Right extends React.Component{
     return (
       <div className="rightPane">
         <div className="row">
-          <div className="column">
-            <StaticImage src="https://www.w3schools.com/w3images/wedding.jpg" />
-          </div>
-          <div className="column">
-          <StaticImage src="https://www.w3schools.com/w3images/paris.jpg" />
-          </div>
+            <div className="column">
+                <StaticImage src="https://picsum.photos/200/300/?random" />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+            </div>
+            <div className="column">
+                <StaticImage src="https://picsum.photos/200/300/?random" />
+                <StaticImage src="https://picsum.photos/200/300/?random" />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+            </div>
+            <div className="column">
+                <StaticImage src="https://picsum.photos/200/300/?random" />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+            </div>
+            <div className="column">
+                <StaticImage src="https://picsum.photos/200/300/?random" />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+                <StaticImage src="https://picsum.photos/200/300/?random"  />
+            </div>
         </div>
       </div>
     );

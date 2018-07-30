@@ -11,22 +11,34 @@ module.exports =  class Left extends React.Component{
     this.state = {
       canvasheight: 0,
       canvaswidth: 0,
-      src: [],
-      point: {
-        x : 0,
-        y : 0
-      }
+      canvasimage: []
     }
   }
 
+  deleteElement = ev => {
+    console.log(ev);
+      let layer = ev.target.getLayer();
+      if(layer){
+       ev.target.destroy();
+       console.log(this.stage._stage.find('Transformer'));
+       this.stage._stage.find('Transformer').destroy();
+       layer.batchDraw();
+      }
+      console.log(ev.target.attrs.datakey);
+      this.setState({
+        canvasimage: this.state.canvasimage.filter((_, i) => i !== ev.target.attrs.datakey)
+      });
+  }
+
   handleStageClick = e => {
+    console.log(e);
     // if click on empty area - remove all transformers
       if (e.target === this.stage._stage) {
         this.stage._stage.find('Transformer').destroy();
         this.layer.draw();
         return;
       }
-      // do nothing if clicked NOT on our rectangles
+      // do nothing if clicked NOT on our image
       if (!e.target.hasName('image')) {
         return;
       }
@@ -41,15 +53,6 @@ module.exports =  class Left extends React.Component{
       this.layer.draw();
   };
 
-  updateTransformData = (x, y) => {
-    this.setState({
-      point : {
-        x : x,
-        y : y
-      }
-    });
-  }
-
   componentDidMount(){
     const height = this.divElement.clientHeight;
     const width = this.divElement.clientWidth;
@@ -57,39 +60,29 @@ module.exports =  class Left extends React.Component{
   }
 
  OnDrop = (ev)=>{
-   var data = ev.dataTransfer.getData("src_text");
-   this.setState(
-       {
-         src: [...this.state.src, data],
-         point: {
-           x: ev.clientX > 0 ? ev.clientX : 0,
-           y: ev.clientY > 0 ? ev.clientY : 0
-         }
-       }
-   );
-   ev.preventDefault();
- }
-
- deleteElement = ev => {
-     let layer = ev.target.getLayer();
-     if(layer){
-      ev.target.destroy();
-      this.stage._stage.find('Transformer').destroy();
-      layer.batchDraw();
+  var data = {
+     src : ev.dataTransfer.getData("src_text"),
+     x : ev.clientX > 0 ? ev.clientX-5 : 0,
+     y : ev.clientY > 0 ? ev.clientY-30 : 0
+   }
+   this.setState({
+         canvasimage: [...this.state.canvasimage, data]
      }
+   );
  }
 
   render(){
     const { src, point, canvasheight, canvaswidth} = this.state;
     return (
       <div className="leftPane" ref={ (divElement) => this.divElement = divElement} onDrop={this.OnDrop} onDragOver={ (ev) => { ev.preventDefault(); }} >
-        <Stage ref={ (stage) => this.stage = stage } width={ canvaswidth } height={ canvasheight } onClick={this.handleStageClick} >
+        <span style={{'fontSize': '50px', 'position': 'absolute', 'top': '370px', 'left': '240px', 'opacity': 0.2}}>Drop Here!</span>
+        <Stage ref={ (stage) => this.stage = stage } width={ canvaswidth } height={ canvasheight } onClick={this.handleStageClick}>
           <Layer ref={ (layer) => this.layer = layer }>
             {
-              this.state.src ?
-              this.state.src.map((data, index) => {
+              this.state.canvasimage ?
+              this.state.canvasimage.map((data, index) => {
                 return (
-                  <DraggedImage delete={this.deleteElement} key={ index } name='image' src={ data } pointx={ point.x } pointy={ point.y }/>
+                  <DraggedImage delete={this.deleteElement} key={ index } datakey={ index } name='image' data={ data }/>
                 );
               }) : null
             }

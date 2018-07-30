@@ -5,7 +5,7 @@ module.exports = class Footer extends React.Component{
   render(){
     return (
       <div className="footer">
-        Copyrights all reserved (c)
+        Some blah blah copyright (c) issue blah!
       </div>
     );
   }
